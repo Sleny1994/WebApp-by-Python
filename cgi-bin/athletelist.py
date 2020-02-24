@@ -1,3 +1,4 @@
+#! /usr/local/bin/python3
 # -*-coding:utf-8 -*-
 
 def sanitize(time_string):

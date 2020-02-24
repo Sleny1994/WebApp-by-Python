@@ -1,3 +1,5 @@
+#! /usr/local/bin/python3
+
 import pickle
 from athletelist import AthleteList
 from athletelist import get_coach_data

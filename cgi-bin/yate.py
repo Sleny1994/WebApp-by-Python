@@ -1,3 +1,4 @@
+#! /usr/local/bin/python3
 
 from string import Template
 
@@ -5,13 +6,13 @@ def start_response(resp="text/html"): # JSON时使用application/json
     return('Content-type: ' + resp + '\n\n')
 
 def include_header(the_title):
-    with open('C:\\Users\\User1\\Desktop\\Python\\Web App\\templates\\header.html') as headf:
+    with open('/Users/sunlingfeng/Desktop/Python/Head_First_Python/WebApp-by-Python/templates/header.html') as headf:
         head_text = headf.read()
     header = Template(head_text)
     return(header.substitute(title=the_title))
 
 def include_footer(the_links):
-    with open('C:\\Users\\User1\\Desktop\\Python\\Web App\\templates\\footer.html') as footf:
+    with open('/Users/sunlingfeng/Desktop/Python/Head_First_Python/WebApp-by-Python/templates/footer.html') as footf:
         foot_text = footf.read()
     link_string = ''
     for key in the_links:
@@ -42,3 +43,16 @@ def header(header_text, header_level=2):
 
 def para(para_text):
     return('<p>' + para_text + '</p>') 
+
+def create_inputs(inputs_list):
+    html_inputs = ''
+    for each_input in inputs_list:
+        html_inputs = html_inputs + '<input type = "Text" name = "' + each_input + '"size = 40 >'
+    return(html_inputs)
+
+def do_form(name, the_inputs, method = "POST", text = "Submit"):
+    with open('/Users/sunlingfeng/Desktop/Python/Head_First_Python/WebApp-by-Python/templates/form.html') as formf:
+        form_text = formf.read()
+    inputs = create_inputs(the_inputs)
+    form = Template(form_text)
+    return(form.substitute(cgi_name = name, http_method = method, list_of_inputs = inputs, submit_text = text))
