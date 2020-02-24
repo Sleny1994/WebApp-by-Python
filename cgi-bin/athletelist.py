@@ -1,3 +1,4 @@
+#! /usr/local/bin/python3
 # -*-coding:utf-8 -*-
 
 def sanitize(time_string):
@@ -21,13 +22,17 @@ class AthleteList(list):
     def top3(self):
         return(sorted(set([sanitize(t) for t in self]))[0:3])
 
-def get_coach_data(filename):
-    try:
-        with open(filename) as f:
-            data = f.readline()
-        templ = data.strip().split(",")
-        # print(templ)
-        return(AthleteList(templ.pop(0), templ.pop(0), templ))
-    except IOError as ioerr:
-        print("File error: " + str(ioerr))
-        return(None)    
+    @property
+    def clean_data(self):
+        return(sorted(set([sanitize(t) for t in self])))
+
+# def get_coach_data(filename):
+#     try:
+#         with open(filename) as f:
+#             data = f.readline()
+#         templ = data.strip().split(",")
+#         # print(templ)
+#         return(AthleteList(templ.pop(0), templ.pop(0), templ))
+#     except IOError as ioerr:
+#         print("File error: " + str(ioerr))
+#         return(None)

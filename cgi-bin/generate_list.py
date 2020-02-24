@@ -1,15 +1,20 @@
+#! /usr/local/bin/python3
+
 import athletemodel
 import yate
-import glob
+# import glob
 
-data_files = glob.glob("C:/Users/User1/Desktop/Python/Web App/data/*.txt")
-athletes = athletemodel.put_to_store(data_files)
+# data_files = glob.glob("/Users/sunlingfeng/Desktop/Python/Head_First_Python/WebApp-by-Python/data/*.txt")
+athletes = athletemodel.get_namesID_from_store()
+
+print(athletes)
+
 print(yate.start_response())
-print(yate.include_header("Coach Kelly's List of Athletes"))
+print(yate.include_header("NUAC's List of Athletes"))
 print(yate.start_form("generate_timing_data.py"))
 print(yate.para("Select an athlete from the list to work with:"))
 
-for each_authlete in athletes:
-    print(yate.radio_button("which_athlete", athletes[each_authlete].name))
+for each_athlete in athletes:
+    print(yate.radio_button_id("which_athlete", each_athlete[0], each_athlete[1]))
 print(yate.end_form("Select"))
-print(yate.include_footer({"Home": "../index.html"}))
+print(yate.include_footer({"Home": "/Users/sunlingfeng/Desktop/Python/Head_First_Python/WebApp-by-Python/index.html"}))
